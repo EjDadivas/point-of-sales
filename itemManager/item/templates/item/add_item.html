@@ -1,0 +1,27 @@
+{% extends "item/base.html" %} {% block body %}
+<form method="POST" action="{% url 'add_item' %}">
+    {% csrf_token %}
+    <input type="text" 
+    name="itname" 
+    class="form-control" 
+    placeholder="Item Name" />
+    <div class="row align-items-center mt-4">
+        <div class="row align-items-center mt-4">
+            <div class="col">
+                <input 
+                type="number" 
+                name="itprice" 
+                class="form-control" 
+                placeholder="Item Price" />
+            </div>
+        </div>
+        <div class="row float-right mt-4">
+            <div class="col">
+            <button type="button" 
+            class="btn btn-secondary"
+            data-dismiss="modal"
+            >Cancel
+            </button>
+            <input type="submit" class="btn btn-primary" />
+    </form>
+{% endblock %}                
