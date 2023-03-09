@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Student Management System</title>
+    <title>Point of Sales System</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
@@ -13,16 +13,21 @@
   </head>
   <body class="d-flex flex-column min-vh-100">
     <script
-      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
       crossorigin="anonymous"
     ></script>
     <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
-      integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+      integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
       crossorigin="anonymous"
     ></script>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+      integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+      crossorigin="anonymous"
+    ></script>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light"">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">
           <i class="fa-solid fa-shopping-cart fa-lg"></i> Point of Sales System
@@ -45,7 +50,7 @@
               <!-- Trigger the modal with a button -->
               <button
                 type="button"
-                class="btn btn-outline-danger btn-m"
+                class="btn btn-outline-primary btn-m"
                 data-toggle="modal"
                 data-target="#myModal"
               >
@@ -61,11 +66,51 @@
                       <button type="button" class="close" data-dismiss="modal">
                         &times;
                       </button>
-                      <h4 class="modal-title">Modal Header</h4>
+                      <h4 class="modal-title">Add Item</h4>
                     </div>
+                    {% comment %} Modal Body {% endcomment %}
                     <div class="modal-body">
-                      <p>Some text in the modal.</p>
+                      <form method="POST" action="{% url 'add_item' %}">
+                        {% csrf_token %}
+                        <div class="row align-items-center mt-4">
+                          <div class="row align-items-center mt-4">
+                            <div class="col">
+                              <input
+                                type="text"
+                                name="itname"
+                                class="form-control"
+                                placeholder="Item Name"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row align-items-center mt-4">
+                          <div class="row align-items-center mt-4">
+                            <div class="col">
+                              <input
+                                type="number"
+                                name="itprice"
+                                class="form-control"
+                                placeholder="Item Price"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row float-right mt-4">
+                          <div class="col">
+                            <button
+                              type="button"
+                              class="btn btn-secondary"
+                              data-dismiss="modal"
+                            >
+                              Cancel
+                            </button>
+                            <input type="submit" class="btn btn-primary" />
+                          </div>
+                        </div>
+                      </form>
                     </div>
+                    {% comment %} modal body ends here bro {% endcomment %}
                     <div class="modal-footer">
                       <button
                         type="button"
@@ -78,15 +123,13 @@
                   </div>
                 </div>
               </div>
-              {% comment %} nuts endedd lmao {% endcomment %}
             </li>
-            {% comment %} {% endcomment %}
+
             <li class="nav-item">
               <a class="nav-link" href="#">
                 <i class="fa-solid fa-plus fa-lg"></i> Add Item
               </a>
             </li>
-            {% comment %} bruh {% endcomment %}
           </ul>
         </div>
       </div>

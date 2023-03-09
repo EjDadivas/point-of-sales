@@ -17,4 +17,4 @@ def add_item(request):
         itname = request.POST.get("itname")
         itprice = request.POST.get("itprice")
         item.objects.create(item_name=itname, item_price=itprice)
-    return render(request, 'item/add_item.html')
+    return redirect('list_item')
