@@ -18,3 +18,7 @@ def add_item(request):
         itprice = request.POST.get("itprice")
         item.objects.create(item_name=itname, item_price=itprice)
     return redirect('list_item')
+
+
+def delete_item(request, pk):
+    item.objects.all()

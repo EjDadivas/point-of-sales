@@ -27,7 +27,7 @@
       integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
       crossorigin="anonymous"
     ></script>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light"">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">
           <i class="fa-solid fa-shopping-cart fa-lg"></i> Point of Sales System
@@ -35,8 +35,8 @@
         <button
           class="navbar-toggler"
           type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarColor01"
+          data-toggle="collapse"
+          data-target="#navbarColor01"
           aria-controls="navbarColor01"
           aria-expanded="false"
           aria-label="Toggle navigation"
@@ -54,7 +54,7 @@
                 data-toggle="modal"
                 data-target="#myModal"
               >
-                <i class="fa-solid fa-list fa-lg"></i> All Item
+                <i class="fa-solid fa-plus fa-lg"></i>All Item
               </button>
 
               <!-- Modal -->
@@ -70,9 +70,9 @@
                     </div>
                     {% comment %} Modal Body {% endcomment %}
                     <div class="modal-body">
-                      <form method="POST" action="{% url 'add_item' %}">
-                        {% csrf_token %}
-                        <div class="row align-items-center mt-4">
+                      <div class="inner-body">
+                        <form method="POST" action="{% url 'add_item' %}">
+                          {% csrf_token %}
                           <div class="row align-items-center mt-4">
                             <div class="col">
                               <input
@@ -83,8 +83,8 @@
                               />
                             </div>
                           </div>
-                        </div>
-                        <div class="row align-items-center mt-4">
+
+                          {% comment %} {% endcomment %}
                           <div class="row align-items-center mt-4">
                             <div class="col">
                               <input
@@ -95,20 +95,23 @@
                               />
                             </div>
                           </div>
-                        </div>
-                        <div class="row float-right mt-4">
-                          <div class="col">
-                            <button
-                              type="button"
-                              class="btn btn-secondary"
-                              data-dismiss="modal"
-                            >
-                              Cancel
-                            </button>
-                            <input type="submit" class="btn btn-primary" />
+
+                          {% comment %} {% endcomment %}
+                          <div class="row float-right mt-4">
+                            <div class="col">
+                              <button
+                                type="button"
+                                class="btn btn-secondary"
+                                data-dismiss="modal"
+                              >
+                                Cancel
+                              </button>
+                              <input type="submit" class="btn btn-primary" />
+                            </div>
                           </div>
-                        </div>
-                      </form>
+                          {% comment %} {% endcomment %}
+                        </form>
+                      </div>
                     </div>
                     {% comment %} modal body ends here bro {% endcomment %}
                     <div class="modal-footer">
@@ -123,12 +126,6 @@
                   </div>
                 </div>
               </div>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <i class="fa-solid fa-plus fa-lg"></i> Add Item
-              </a>
             </li>
           </ul>
         </div>
