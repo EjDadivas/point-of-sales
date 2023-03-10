@@ -14,7 +14,12 @@
       <td class="iprice">PHP {{i.item_price}}</td>
       <td class="text-center">
         <a class="btn btn-primary itemupd mx-4" href="">Update</a>
-        <a class="btn btn-primary itemupd mx-4"> Delete </a>
+        <a
+          class="btn btn-danger itemdel mx-4"
+          href="{% url 'delete_item' pk=i.pk%}"
+        >
+          Delete
+        </a>
         <input type="hidden" class="form-control nmeid" value="{{i.pk}}" />
       </td>
     </tr>

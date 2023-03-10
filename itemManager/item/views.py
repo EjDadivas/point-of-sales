@@ -21,4 +21,14 @@ def add_item(request):
 
 
 def delete_item(request, pk):
-    item.objects.all()
+    item.objects.filter(pk=pk).delete()
+    return redirect('list_item')
+
+
+def update_item(request, pk):
+    if (request.method == "POST"):
+        allitems = item.objects.all()
+        itname = request.POST.get("itname")
+        itprice = request.POST.get("itprice")
+        item.objects.create(item_name=itname, item_price=itprice)
+    return redirect('list_item')
