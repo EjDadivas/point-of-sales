@@ -13,7 +13,11 @@
       <td class="iname">{{i.item_name}}</td>
       <td class="iprice">PHP {{i.item_price}}</td>
       <td class="text-center">
-        <a class="btn btn-primary itemupd mx-4" href="">Update</a>
+        <a
+          class="btn btn-primary itemupd mx-4"
+          href="{% url 'update_item' pk=i.pk%}"
+          >Update</a
+        >
         <a
           class="btn btn-danger itemdel mx-4"
           href="{% url 'delete_item' pk=i.pk%}"

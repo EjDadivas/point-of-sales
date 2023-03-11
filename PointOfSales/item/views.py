@@ -26,9 +26,12 @@ def delete_item(request, pk):
 
 
 def update_item(request, pk):
-    if (request.method == "POST"):
-        allitems = item.objects.all()
+    it = item.objects.get(pk=pk)
+    if request.method == "POST":
         itname = request.POST.get("itname")
         itprice = request.POST.get("itprice")
-        item.objects.create(item_name=itname, item_price=itprice)
-    return redirect('list_item')
+        it.item_name = itname
+        it.item_price = itprice
+        it.save()
+        return redirect('list_item')
+    return render(request, 'item/update_item.html', {'item': it})

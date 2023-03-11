@@ -1,0 +1,39 @@
+{% extends "item/base.html" %} {% block body %}
+
+<form method="POST" action="{% url 'update_item' item.pk%}">
+  {% csrf_token %}
+  <div class="row align-items-center mt-4">
+    <div class="col">
+      <label for="itname">Name:</label>
+      <input
+        type="text"
+        name="itname"
+        class="form-control"
+        value="{{item.item_name}}"
+      />
+    </div>
+  </div>
+
+  <div class="row align-items-center mt-4">
+    <div class="col">
+      <label for="itprice">Price:</label>
+      <input
+        type="number"
+        name="itprice"
+        class="form-control"
+        value="{{item.item_price}}"
+      />
+    </div>
+  </div>
+
+  <div class="row float-right mt-4">
+    <div class="col">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">
+        <a href="{% url 'list_item'%}">Cancel</a>
+      </button>
+      <input type="submit" class="btn btn-primary" value="Update" />
+    </div>
+  </div>
+  {% comment %} {% endcomment %}
+</form>
+{%endblock%}

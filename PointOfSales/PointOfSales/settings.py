@@ -51,7 +51,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'itemManager.urls'
+ROOT_URLCONF = 'PointOfSales.urls'
 
 TEMPLATES = [
     {
@@ -69,7 +69,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'itemManager.wsgi.application'
+WSGI_APPLICATION = 'PointOfSales.wsgi.application'
 
 
 # Database
@@ -85,7 +85,6 @@ DATABASES = {
         'PORT': '3306',
     }
 }
-
 
 
 # Password validation
