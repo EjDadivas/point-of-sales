@@ -1,33 +1,132 @@
 {% extends "item/base.html" %} {% block body %}
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Item Name</th>
-      <th scope="col">Item Price</th>
-      <th class="text-center" scope="col">Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for i in items %}
-    <tr>
-      <td class="iname">{{i.item_name}}</td>
-      <td class="iprice">PHP {{i.item_price}}</td>
-      <td class="text-center">
-        <a
-          class="btn btn-primary itemupd mx-4"
-          href="{% url 'update_item' pk=i.pk%}"
-          >Update</a
-        >
-        <a
-          class="btn btn-danger itemdel mx-4"
-          href="{% url 'delete_item' pk=i.pk%}"
-        >
-          Delete
-        </a>
-        <input type="hidden" class="form-control nmeid" value="{{i.pk}}" />
-      </td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-12">
+      <table class="table mt-5 row-3">
+        <thead>
+          <tr>
+            <th scope="col">Item Name</th>
+            <th scope="col">Item Price</th>
+            <th class="text-center" scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for i in items %}
+          <tr>
+            <td class="iname">{{i.item_name}}</td>
+            <td class="iprice">PHP {{i.item_price}}</td>
+            <td class="text-center">
+              {% comment %}
+              <a
+                class="btn btn-success itemupd mx-4"
+                href="{% url 'update_item' pk=i.pk%}"
+                >Update</a
+              >
+              {% endcomment %} {% comment %} add the modal here {% endcomment %}
+
+              <!-- Trigger the modal with a button -->
+              <button
+                type="button"
+                class="btn btn-success itemupd mx-4"
+                data-toggle="modal"
+                data-target="#updateModal{{i.pk}}"
+              >
+                Update
+              </button>
+
+              <!-- Modal -->
+              <div
+                class="modal fade"
+                id="updateModal{{i.pk}}"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="updateModal{{i.pk}}Label"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title">Update {{i.item_name}}</h4>
+                    </div>
+                    {% comment %} Modal Body {% endcomment %}
+                    <div class="modal-body">
+                      <form method="POST" action="{% url 'update_item' i.pk%}">
+                        {% csrf_token %}
+                        <div class="row align-items-center mt-4">
+                          <div class="col">
+                            <input
+                              type="text"
+                              name="itname"
+                              class="form-control"
+                              placeholder="Item Name"
+                              value="{{i.item_name}}"
+                            />
+                          </div>
+                        </div>
+
+                        <div class="row align-items-center mt-4">
+                          <div class="col">
+                            <input
+                              type="number"
+                              name="itprice"
+                              class="form-control"
+                              placeholder="Item Price"
+                              value="{{i.item_price}}"
+                            />
+                          </div>
+                        </div>
+
+                        <div class="row float-right mt-4">
+                          <div class="col">
+                            <button
+                              type="button"
+                              class="btn btn-secondary"
+                              data-dismiss="modal"
+                            >
+                              <a href="{% url 'list_item'%}">Cancel</a>
+                            </button>
+                            <input
+                              type="submit"
+                              class="btn btn-success"
+                              value="Update"
+                            />
+                          </div>
+                        </div>
+                        {% comment %} {% endcomment %}
+                      </form>
+                    </div>
+                    {% comment %} modal body ends here bro {% endcomment %}
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-default"
+                        data-dismiss="modal"
+                      >
+                        Close
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% comment %} ended modal stuff here lmao {% endcomment %}
+              <a
+                class="btn btn-primary itemdel mx-4"
+                href="{% url 'delete_item' pk=i.pk%}"
+              >
+                Delete
+              </a>
+              <input
+                type="hidden"
+                class="form-control nmeid"
+                value="{{i.pk}}"
+              />
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 {%endblock%}

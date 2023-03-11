@@ -21,7 +21,7 @@ class item(models.Model):
 class order(models.Model):
     total_amount_paid = models.DecimalField(max_digits=6, decimal_places=2)
     order_date = models.DateTimeField(auto_now_add=True)
-    payment_tyoe = models.CharField(max_length=100)
+    payment_type = models.CharField(max_length=100)
     objects = models.Manager()
 
     def getTotalAmountPaid(self):
@@ -39,9 +39,9 @@ class order(models.Model):
 
 class item_order(models.Model):
     item_id = models.ForeignKey(item, on_delete=models.PROTECT)
-    order_id = models.ForeignKey(order, on_delete=models.PROTECT)
+    order_id = models.ForeignKey(order, on_delete=models.CASCADE)
     line_total = models.DecimalField(max_digits=6, decimal_places=2)
-    quantity = models.IntegerField()
+    quantity = models.IntegerField(default=0)
     objects = models.Manager()
 
     def itemId(self):
