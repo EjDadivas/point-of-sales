@@ -41,19 +41,19 @@ class item_order(models.Model):
     item_id = models.ForeignKey(item, on_delete=models.PROTECT)
     order_id = models.ForeignKey(order, on_delete=models.CASCADE)
     line_total = models.DecimalField(max_digits=6, decimal_places=2)
-    quantity = models.IntegerField(default=0)
+    quantity = models.IntegerField()
     objects = models.Manager()
 
-    def itemId(self):
+    def getItemId(self):
         return self.item_id
 
-    def orderId(self):
+    def getOrderId(self):
         return self.order_id
 
-    def lineTotal(self):
+    def getLineTotal(self):
         return self.line_total
 
-    def quantity(self):
+    def getQuantity(self):
         return self.quantity
 
     def __str__(self):

@@ -4,7 +4,7 @@ from .models import item
 
 
 def item_view(request):
-    return HttpResponse("Hello")
+    return redirect('list_item')
 
 
 def list_item(request):

@@ -57,7 +57,7 @@
                 <i class="fa-solid fa-plus fa-lg ml-3"></i> &nbsp; Add Item
               </button>
 
-              <!-- Modal -->
+              <!-- Add Item Modal -->
               <div id="myModal" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                   <!-- Modal content-->
@@ -65,7 +65,7 @@
                     <div class="modal-header">
                       <h4 class="modal-title">Add Item</h4>
                     </div>
-                    {% comment %} Modal Body {% endcomment %}
+                    <!--Modal Body-->
                     <div class="modal-body">
                       <form method="POST" action="{% url 'add_item' %}">
                         {% csrf_token %}
@@ -76,18 +76,17 @@
                               name="itname"
                               class="form-control"
                               placeholder="Item Name"
+                              required
                             />
                           </div>
                         </div>
 
                         <div class="row align-items-center mt-4">
                           <div class="col">
-                            <input
-                              type="number"
-                              name="itprice"
-                              class="form-control"
-                              placeholder="Item Price"
-                            />
+                            <input type="number" name="itprice" step="0.01"
+                            return redirect('list_item') class="form-control"
+                            placeholder="Item Price" return
+                            redirect('list_item') required />
                           </div>
                         </div>
 
@@ -103,23 +102,12 @@
                             <input type="submit" class="btn btn-primary" />
                           </div>
                         </div>
-                        {% comment %} {% endcomment %}
                       </form>
-                    </div>
-                    {% comment %} modal body ends here bro {% endcomment %}
-                    <div class="modal-footer">
-                      <button
-                        type="button"
-                        class="btn btn-default"
-                        data-dismiss="modal"
-                      >
-                        Close
-                      </button>
                     </div>
                   </div>
                 </div>
               </div>
-              {% comment %} end modal {% endcomment %}
+              <!--End Update Modal -->
             </li>
           </ul>
         </div>
